@@ -1,6 +1,6 @@
 import { Stack, router, useLocalSearchParams } from "expo-router";
 import { useMemo, useState } from "react";
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import { Button } from "react-native-paper";
 
 import { useMainStore } from "@/stores/main";
@@ -11,6 +11,7 @@ export default function AccountView() {
   const { account: id } = useLocalSearchParams();
   const getAccount = useMainStore(state => state.getAccount);
   const updateAccount = useMainStore(state => state.updateAccount);
+  const deleteAccount = useMainStore(state => state.removeAccount);
   const acc = useMemo(() => {
     const account = getAccount(id.toString());
     if (!account) {
@@ -39,6 +40,27 @@ export default function AccountView() {
     router.back();
   };
 
+  const remove = () => {
+    Alert.alert(
+      "Delete Account",
+      "Are you sure you want to delete this account?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => {
+            router.back();
+            deleteAccount(acc.id);
+          },
+        },
+      ],
+    );
+  };
+
   return (
     <View style={{ padding: "10%", gap: 20 }}>
       <Stack.Screen options={{ title: acc.name }} />
@@ -48,9 +70,25 @@ export default function AccountView() {
         onCreditLimitChange={setCreditLimitText}
         onNameChange={setName}
       />
-      <Button mode="contained" onPress={update}>
-        Save
-      </Button>
+      <View
+        style={{
+          flexDirection: "row",
+          gap: 20,
+          width: "100%",
+        }}
+      >
+        <Button style={{ flex: 1 }} mode="contained" onPress={update}>
+          Save
+        </Button>
+        <Button
+          style={{ flex: 1 }}
+          mode="outlined"
+          onPress={remove}
+          labelStyle={{ color: "red" }}
+        >
+          Delete
+        </Button>
+      </View>
     </View>
   );
 }

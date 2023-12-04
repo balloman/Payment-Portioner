@@ -1,6 +1,6 @@
 import { Link, Stack, useRouter } from "expo-router";
 import { ScrollView } from "react-native";
-import { Button, Card, Text } from "react-native-paper";
+import { Avatar, Button, Card, Icon } from "react-native-paper";
 
 import { Account, useMainStore } from "@/stores/main";
 
@@ -16,10 +16,14 @@ function AccountItem({ account }: { account: Account }) {
       style={{ marginBottom: 20, padding: 10 }}
       onPress={() => router.push(`/accounts/${account.id}`)}
     >
-      <Card.Title title={account.name} />
-      <Card.Content>
-        <Text>Credit Limit: {account.limit}</Text>
-      </Card.Content>
+      <Card.Title
+        title={account.name}
+        titleVariant="titleLarge"
+        subtitle={`$${account.limit.toFixed(2)}`}
+        subtitleVariant="titleMedium"
+        left={props => <Avatar.Icon {...props} icon="bank" />}
+        right={props => <Icon {...props} source="chevron-right" />}
+      />
     </Card>
   );
 }

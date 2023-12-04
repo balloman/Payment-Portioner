@@ -17,12 +17,13 @@ export default function AccountView() {
     if (!account) {
       alert("Account not found.");
       router.back();
-      return { name: "", limit: 0, id: "" };
+      return { name: "", limit: 0, id: "", rate: 0 };
     }
     return account;
   }, [id, getAccount]);
   const [name, setName] = useState(acc.name);
   const [creditLimitText, setCreditLimitText] = useState(acc.limit.toString());
+  const [rateText, setRateText] = useState(acc.rate.toString());
 
   const update = () => {
     if (name.length === 0) {
@@ -67,8 +68,10 @@ export default function AccountView() {
       <AccountForm
         creditLimitText={creditLimitText}
         name={name}
+        rateText={rateText}
         onCreditLimitChange={setCreditLimitText}
         onNameChange={setName}
+        onRateChange={setRateText}
       />
       <View
         style={{

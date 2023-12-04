@@ -22,6 +22,8 @@ export interface Account {
   name: string;
   /** The limit on the account */
   limit: number;
+  /** The interest rate on the account */
+  rate: number;
 }
 
 interface MainStore {

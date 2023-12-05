@@ -1,6 +1,6 @@
 import { Link, Stack } from "expo-router";
 import { useMemo, useState } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import {
   Button,
   Card,
@@ -119,13 +119,12 @@ export default function Home() {
   }, [balances, accounts, amountToPay]);
 
   return (
-    <View
+    <ScrollView
       style={{
         flex: 1,
-        alignItems: "center",
-        gap: 20,
-        padding: "10%",
       }}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ alignItems: "center", gap: 20, padding: "10%" }}
     >
       <Stack.Screen options={{ title: "Home" }} />
       {accounts.map(account => (
@@ -153,7 +152,11 @@ export default function Home() {
         </Button>
       </View>
       <Portal>
-        <Dialog visible={dialogDis.isOpen} onDismiss={dialogDis.onClose}>
+        <Dialog
+          visible={dialogDis.isOpen}
+          style={{ marginBottom: "100%" }}
+          onDismiss={dialogDis.onClose}
+        >
           <Dialog.Title>Calculate</Dialog.Title>
           <Dialog.Content
             style={{
@@ -191,6 +194,6 @@ export default function Home() {
           </Dialog.Content>
         </Dialog>
       </Portal>
-    </View>
+    </ScrollView>
   );
 }

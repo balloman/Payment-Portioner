@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "cc-portion",
+    "name": "Credit Card Portioner",
     "slug": "cc-portion",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -14,7 +14,8 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bernardallotey.ccportion"
     },
     "android": {
       "adaptiveIcon": {
@@ -26,6 +27,14 @@
     "experiments": {
       "typedRoutes": true,
       "tsconfigPaths": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4cd448ab-56ea-4da0-8288-44f11b2c55b3"
+      }
     }
   }
 }

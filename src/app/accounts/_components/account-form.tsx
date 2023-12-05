@@ -23,13 +23,13 @@ export default function AccountForm(props: AccountFormProps) {
         label="Credit Limit"
         mode="outlined"
         value={props.creditLimitText}
-        inputMode="numeric"
+        keyboardType="decimal-pad"
         onChangeText={props.onCreditLimitChange}
       />
       <TextInput
         label="Interest Rate"
         mode="outlined"
-        inputMode="numeric"
+        keyboardType="decimal-pad"
         value={props.rateText}
         onChangeText={props.onRateChange}
       />
